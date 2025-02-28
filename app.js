@@ -12,10 +12,10 @@ app.use(cors())
 // Verify JWT
 function authenticateToken(req, res, next) {
     const token = req.header('Authorization')?.split(' ')[1];
-    if (!token) return res.status(401).json({ message: 'Access Denied! Token Missing!' });
+    if (!token) return res.status(401).send('Access Denied! Token Missing!');
 
     jwt.verify(token, SECRET_KEY, (err, user) => {
-        if (err) return res.status(403).json({ message: 'Invalid Token, Generate the new token!' });
+        if (err) return res.status(403).send('Invalid Token, Generate the new token!');
         req.user = user;
         next();
     });
@@ -25,11 +25,11 @@ function authenticateToken(req, res, next) {
 app.post('/login', (req, res) => {
     const { username } = req.body;
     if (!username) {
-        return res.status(400).json({ message: 'Username is required' });
+        return res.status(400).send('Username is required');
     }
 
     const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
-    res.json({ statusCode: 200, body: JSON.stringify({token}) });
+    res.status(200).send(token);
 });
 
 // Protected route
@@ -46,7 +46,5 @@ app.get('/hello', authenticateToken, (req, res) => {
 // To deploy on AWS
 const server = awsServerlessExpress.createServer(app);
 exports.handler = async (event, context) => {
-    // return awsServerlessExpress.proxy(server, event, context);
-    console.log("Event Received:", JSON.stringify(event, null, 2));
     return awsServerlessExpress.proxy(server, event, context, "PROMISE").promise;
 };
