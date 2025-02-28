@@ -1,0 +1,26 @@
+{
+  "name": "simpleapi",
+  "version": "1.0.0",
+  "description": "A sample express app for a simple api",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KarthikHolikatti/simpleApi.git"
+  },
+  "author": "Karthik Holikatti",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KarthikHolikatti/simpleApi/issues"
+  },
+  "homepage": "https://github.com/KarthikHolikatti/simpleApi#readme",
+  "dependencies": {
+    "aws-serverless-express": "^3.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "serverless-http": "^3.2.0"
+  }
+}

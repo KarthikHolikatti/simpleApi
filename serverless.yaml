@@ -1,0 +1,20 @@
+service: jwt-api-lambda
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: us-east-1
+  environment:
+    SECRET_KEY: ${env:SECRET_KEY}
+
+functions:
+  app:
+    handler: app.handler
+    events:
+      - http:
+          path: /{proxy+}
+          method: any
+          cors: true
+    memorySize: 128
+    timeout: 10
+
