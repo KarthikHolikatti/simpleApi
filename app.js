@@ -34,7 +34,8 @@ app.post('/login', (req, res) => {
 
 // Protected route
 app.get('/hello', authenticateToken, (req, res) => {
-    res.json({ statusCode: 200, body: JSON.stringify({ message: 'Hello, World!' }) });
+    // res.json({ statusCode: 200, body: JSON.stringify({ message: 'Hello, World!' }) });
+    res.status(200).json({ message: 'Hello, World!' })
 });
 
 // To run locally
