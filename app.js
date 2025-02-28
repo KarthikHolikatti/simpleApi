@@ -12,7 +12,7 @@ app.use(cors())
 // Verify JWT
 function authenticateToken(req, res, next) {
     const token = req.header('Authorization')?.split(' ')[1];
-    if (!token) return res.status(401).json({ message: 'Access Denied! Token MIssing!' });
+    if (!token) return res.status(401).json({ message: 'Access Denied! Token Missing!' });
 
     jwt.verify(token, SECRET_KEY, (err, user) => {
         if (err) return res.status(403).json({ message: 'Invalid Token, Generate the new token!' });
@@ -34,8 +34,8 @@ app.post('/login', (req, res) => {
 
 // Protected route
 app.get('/hello', authenticateToken, (req, res) => {
-    // res.json({ statusCode: 200, body: JSON.stringify({ message: 'Hello, World!' }) });
-    res.status(200).json({ message: 'Hello, World!' })
+    // res.status(200).json({ message: 'Hello, World!' })
+    res.status(200).send('Hello, World!')
 });
 
 // To run locally
