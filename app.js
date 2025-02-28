@@ -25,7 +25,7 @@ function authenticateToken(req, res, next) {
 app.post('/login', (req, res) => {
     const { username } = req.body;
     if (!username) {
-        return res.status(400).send('Username is required');
+        return res.status(400).send('data "username" is required');
     }
 
     const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
