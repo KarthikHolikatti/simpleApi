@@ -1,11 +1,13 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const awsServerlessExpress = require('aws-serverless-express');
-
+const cors = require('cors');
 
 const app = express();
 const SECRET_KEY = process.env.SECRET_KEY;
 app.use(express.json());
+app.use(cors())
+
 
 // Verify JWT
 function authenticateToken(req, res, next) {
