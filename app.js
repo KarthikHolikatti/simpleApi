@@ -24,15 +24,17 @@ function authenticateToken(req, res, next) {
 // Public route to generate a token
 app.post('/login', (req, res) => {
     const { username } = req.body;
-    if (!username) return res.status(400).json({ message: 'Username is required' });
+    if (!username) {
+        return res.status(400).json({ message: 'Username is required' });
+    }
 
     const token = jwt.sign({ username }, SECRET_KEY, { expiresIn: '1h' });
-    res.status(200).json({ token });
+    res.json({ statusCode: 200, body: JSON.stringify({token}) });
 });
 
 // Protected route
 app.get('/hello', authenticateToken, (req, res) => {
-    res.status(200).json({ message: 'Hello, World!' });
+    res.json({ statusCode: 200, body: JSON.stringify({ message: 'Hello, World!' }) });
 });
 
 // To run locally
@@ -43,5 +45,7 @@ app.get('/hello', authenticateToken, (req, res) => {
 // To deploy on AWS
 const server = awsServerlessExpress.createServer(app);
 exports.handler = async (event, context) => {
-    return awsServerlessExpress.proxy(server, event, context);
+    // return awsServerlessExpress.proxy(server, event, context);
+    console.log("Event Received:", JSON.stringify(event, null, 2));
+    return awsServerlessExpress.proxy(server, event, context, "PROMISE").promise;
 };
