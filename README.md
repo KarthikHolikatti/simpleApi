@@ -13,3 +13,5 @@ curl --header "Content-Type: application/json" --header "Authorization: Bearer e
 export SECRET_KEY=my-secret-key
 serverless deploy
 
+
+Serverless key AKvomK0YpXfAi0Eon5lrGqvjXki9VnSyDUZ88wMptn9dr
