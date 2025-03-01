@@ -20,7 +20,7 @@ CICD is achieved via Github Actions. Following steps are performed as part of CI
 5. Install Dependencies - The dependencies defined in package.json needs to be installed on the server before we run deploy, here we run the command ```npm install```.
 6. Install Serverless - To deploy the serverless application we need serverless installed on the server.
 7. Deploy the serverless template - We use serverless framework to deploy the application. We use the command ```serverless deploy --stage <stage-name> --region <aws-region>``` to deploy the application. 
-Here stage-name if required to deploy/release the API gateway. Just creating the gateway does not help, it needs to be staged or deployed. aws-region is required to ensure we deploy the stack in a specific region in AWS.
+Here, stage-name is required to deploy/release the API gateway. Just creating the gateway does not help, it needs to be staged or deployed. aws-region is required to ensure we deploy the stack in a specific region in AWS.
 
 Instructions to test and verify the application:
 
