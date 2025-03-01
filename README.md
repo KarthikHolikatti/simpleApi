@@ -1,13 +1,5 @@
 # simpleApi
-This repo is for creating a sample express application with 2 endpoints. One is a GET endpoint and another POST. Below is the flow of traffic from client to the lambda function:
-
-[ Client ] 
-    |
-    V
-[ API Gateway ]
-    |
-    V
-[ AWS Lambda - Express.js ] -> ( AWS IAM Role ) -> [ AWS CloudWatch Logs ]
+This repo is for creating a sample express application with 2 endpoints. One is a GET endpoint and another POST.
 
 Below is the architecture diagram of this application:
 
